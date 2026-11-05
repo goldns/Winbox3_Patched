@@ -1,0 +1,10 @@
+# Ignore everything, including directories, unless explicitly allowed below.
+*
+
+# Keep this policy and the root-level distribution files.
+!/.gitignore
+!/patch_winbox.py
+!/README.md
+!/README-RU.md
+!/winbox64.v3.43_orig.exe
+!/winbox64.v3.43_patched.exe
