@@ -1,10 +1,10 @@
-# WinBox 3.43.0.1
+# WinBox 3.43.0.1 для MikroTik RouterOS 7.25+
 
 **Нашли баг или нужна доработка? Пишите мне в Telegram: [@kamgoldns](https://t.me/kamgoldns).**
 
 [English](README.md) | Русский
 
-Классический WinBox 3 для Windows x64 с доработками для новых RouterOS. Привычный интерфейс, исправления CMR, возвращённые кнопки и поддержка новых типов полей.
+Классический WinBox 3 для Windows x64 с патчами совместимости с MikroTik RouterOS 7.25+. Привычный интерфейс, исправления CMR, возвращённые кнопки и поддержка новых типов полей.
 
 Запустите **[winbox64.v3.43_patched.exe](winbox64.v3.43_patched.exe)** и подключайтесь как обычно. Установка и Python для запуска не нужны.
 
@@ -27,12 +27,18 @@
 | `patch_6-u32vector` | Передача ID устройств в диалоги CMR Pair/Upgrade |
 | `patch_7-tags` | Редакторы Labels, Port Labels и Order с отдельным выбором режима и имени |
 | `patch_8-bargraph` | Столбчатые графики Access Points / Stations, страницы и прокрутка Dashboard |
-| `patch_9-topolayout` | Топология CMR: узлы, связи, масштаб, перемещение карты и сохранение положения узлов |
+| `patch_9-topolayout` | Топология CMR: узлы, связи, сохранение позиций, масштаб, перемещение и вложенные карты с Back |
+| `patch_10-powercycle` | Выбор интерфейсов в Power Cycle и отдельная команда для каждого выбранного порта |
+| `patch_11-ping-fields` | Отдельные селекторы Interface и VRF в Ping и Traceroute |
 | `patch_diagnostics` | Отдельная сборка с дампом ресурсов и пропущенных полей |
 
 Range принимает число (`55`) или беззнаковый 64-битный диапазон (`5-55`). В Labels и Port Labels доступны обычный режим, `+` и `−`; в Order — обычный и `−`. Pair/Upgrade открывает отдельный диалог для каждого устройства.
 
 В **CMR Topology** перетащите узел и отпустите мышь, чтобы сохранить его положение. Дождитесь `Saved` — позиция останется после повторного открытия карты. Пустое место можно тянуть для перемещения карты, колесо меняет масштаб, **Fit** вписывает схему в окно. **Esc** отменяет перенос до отпускания мыши. Координаты сохраняются сразу: Apply не нужен, а Cancel не отменяет уже сохранённую позицию.
+
+Двойной щелчок по узлу с **Target Layout** открывает связанную карту. **Back** возвращает предыдущую схему с прежним масштабом и положением. `View: …` показывает имя просматриваемой карты; внешние поля и кнопки редактора относятся к исходной схеме.
+
+В **Tools → Ping** и **Tools → Traceroute** доступны отдельные селекторы **Interface** и **VRF**. Оставьте их незаданными для обычного запуска или выберите интерфейс и VRF для проверки.
 
 **Settings → Swap title order** меняет порядок имени устройства и данных подключения в заголовке окна. Выбор хранится в `winboxpatch-title.dat` в папке профиля WinBox.
 
@@ -69,6 +75,6 @@ python .\patch_winbox.py --dump-skipped-fields
 
 ## Благодарности
 
-Основа проекта — [mark99i/WinboxPatch](https://github.com/mark99i/WinboxPatch): патчи v1–v6 из [84a58a6](https://github.com/mark99i/WinboxPatch/tree/84a58a62d6e623008e7092607041caea1b7ac540) и адаптированный переключатель порядка заголовка из [v7](https://github.com/mark99i/WinboxPatch/commit/af2b242c9747ff78020f237281a816792455a037). ESR-доработки интерфейса — **teslasystems**.
+Основа проекта — [mark99i/WinboxPatch](https://github.com/mark99i/WinboxPatch): патчи v1–v6 из [84a58a6](https://github.com/mark99i/WinboxPatch/tree/84a58a62d6e623008e7092607041caea1b7ac540). Возможности [v7](https://github.com/mark99i/WinboxPatch/commit/af2b242c9747ff78020f237281a816792455a037) перенесены выборочно: порядок заголовка — в `patch_mark99i_7`, селекторы Ping/Traceroute — в `patch_11-ping-fields`. Для кнопок Packages/Container, CMR Dashboard и Labels используются наши локальные исправления. ESR-доработки интерфейса — **teslasystems**.
 
 Это неофициальная модификация MikroTik WinBox.

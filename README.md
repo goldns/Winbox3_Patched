@@ -1,10 +1,10 @@
-# WinBox 3.43.0.1
+# WinBox 3.43.0.1 for MikroTik RouterOS 7.25+
 
 **Bugs or feature requests? Message me on Telegram: [@kamgoldns](https://t.me/kamgoldns).**
 
 English | [Русский](README-RU.md)
 
-Classic WinBox 3 for Windows x64, updated to work with newer RouterOS releases. The familiar interface, with fixes for CMR, missing buttons and newer field types.
+Classic WinBox 3 for Windows x64, patched for compatibility with MikroTik RouterOS 7.25+. The familiar interface, with fixes for CMR, missing buttons and newer field types.
 
 Start **[winbox64.v3.43_patched.exe](winbox64.v3.43_patched.exe)** and connect as usual. No installation or Python required to run it.
 
@@ -27,12 +27,18 @@ Start **[winbox64.v3.43_patched.exe](winbox64.v3.43_patched.exe)** and connect a
 | `patch_6-u32vector` | Device IDs passed to CMR Pair/Upgrade dialogs |
 | `patch_7-tags` | Labels, Port Labels and Order editors with separate mode and name controls |
 | `patch_8-bargraph` | Access Points / Stations bar charts, paging and Dashboard scrolling |
-| `patch_9-topolayout` | CMR topology: nodes, links, zoom, pan and saved node positions |
+| `patch_9-topolayout` | CMR topology: nodes, links, saved positions, zoom, pan and nested maps with Back |
+| `patch_10-powercycle` | Power Cycle interface selection and a separate command for each selected port |
+| `patch_11-ping-fields` | Separate Interface and VRF selectors in Ping and Traceroute |
 | `patch_diagnostics` | Optional resource and skipped-field dumps |
 
 Range accepts a number (`55`) or an unsigned 64-bit range (`5-55`). Labels and Port Labels support neutral, `+` and `−` modes; Order supports neutral and `−`. Pair/Upgrade opens a separate dialog for each device.
 
 In **CMR Topology**, drag a node and release it to save its position. Wait for `Saved`; the position is kept when you reopen the map. Drag empty space to pan, use the wheel to zoom, or click **Fit**. **Esc** cancels a drag before release. Coordinates save immediately: Apply is not needed, and Cancel does not undo a position already saved.
+
+Double-click a node with **Target Layout** to view its linked map. **Back** restores the previous map's zoom and position. `View: …` names the map being viewed; the outer editor's fields and buttons still belong to the original layout.
+
+**Tools → Ping** and **Tools → Traceroute** have separate **Interface** and **VRF** selectors. Leave them unset to keep the usual behavior, or select the interface and routing instance for the probe.
 
 **Settings → Swap title order** changes the order of the device identity and connection details in the window title. The choice is stored in `winboxpatch-title.dat` in the WinBox profile folder.
 
@@ -69,6 +75,6 @@ Connect and open the window you want to investigate. Downloaded resources and `s
 
 ## Credits
 
-Based on [mark99i/WinboxPatch](https://github.com/mark99i/WinboxPatch): patches v1–v6 from [84a58a6](https://github.com/mark99i/WinboxPatch/tree/84a58a62d6e623008e7092607041caea1b7ac540), plus the adapted title-order feature from [v7](https://github.com/mark99i/WinboxPatch/commit/af2b242c9747ff78020f237281a816792455a037). ESR interface improvements are credited to **teslasystems**.
+Based on [mark99i/WinboxPatch](https://github.com/mark99i/WinboxPatch): patches v1–v6 from [84a58a6](https://github.com/mark99i/WinboxPatch/tree/84a58a62d6e623008e7092607041caea1b7ac540). Features from [v7](https://github.com/mark99i/WinboxPatch/commit/af2b242c9747ff78020f237281a816792455a037) were adapted selectively: title order is in `patch_mark99i_7`, and Ping/Traceroute selectors are in `patch_11-ping-fields`. Packages/Container buttons, CMR Dashboard and Labels use our local fixes. ESR interface improvements are credited to **teslasystems**.
 
 This is an unofficial modification of MikroTik WinBox.
